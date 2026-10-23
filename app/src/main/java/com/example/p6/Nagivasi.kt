@@ -1,7 +1,17 @@
 package com.example.p6
 
-class Nagivasi {
-}enum class Navigasi {
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.p6.view.FormIsian
+import com.example.p6.view.TampilData
+
+enum class Navigasi {
     FormulirSaya,
     Detail
 }
@@ -26,30 +36,16 @@ fun DataApp(
             composable(route = Navigasi.Detail.name) {
                 TampilData(
                     onBackBtnClick = {
-                        navController.popBackStack()
+                        cancelAndBackToFormulirSaya(navController)
                     }
                 )
             }
         }
     }
 }
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun FormIsian(
-    jenisK: List<String> = listOf("Laki - Laki", "Perempuan"),
-    OnSubmitBtnClick: () -> Unit
+
+private fun cancelAndBackToFormulirSaya(
+    navController: NavHostController
 ) {
-    Scaffold(
-        modifier = Modifier,
-        topBar = {
-            TopAppBar(
-                title = { Text(stringResource(id = R.string.home), color = Color.White) },
-                colors = TopAppBarDefaults.mediumTopAppBarColors(containerColor = colorResource(id = R.color.teal_700))
-            )
-        }
-    ) { isiRuang ->
-        Column(
-            modifier = Modifier.padding(paddingValues = isiRuang),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally
-        )
+    navController.popBackStack(route = Navigasi.FormulirSaya.name, inclusive = false)
+}
