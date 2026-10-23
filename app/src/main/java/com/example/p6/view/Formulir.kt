@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 @OptIn(ExperimentalMaterial3Api::class)
 @Composablefun FormIsian(jenisK)
 fun FormIsian(
-    jenisKl: List<String> = listOf("Laki - Laki", "Perempuan"),
+    jenisK: List<String> = listOf("Laki - Laki", "Perempuan"),
     OnSubmitBtnClick : () -> Unit){
     Scaffold (modifier=Modifier,
         topBar = {
@@ -15,13 +15,36 @@ fun FormIsian(
         }
         )
     isiRuang ->
-    Column(modifier = Modifier.padding(paddingValues = isiRuang),
+    Column(
+        modifier = Modifier.padding(paddingValues = isiRuang),
         verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally) {
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         OutlinedTextField(
-            value = "",
+            value = textNama,
+            onValueChange = { textNama = it },
+            label = { Text("Nama") },
             singleLine = true,
+            modifier = Modifier.padding(top = 20.dp)
+        )
+
+        HorizontalDivider(
             modifier = Modifier
-                .padding(top = 20.dp)
-}
+                .padding(all = 20.dp)
+                .width(250.dp),
+            thickness = 2.dp,
+            color = Color.Red
+        )
+
+        Row {
+            jenisK.forEach { item ->
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    RadioButton(
+                        selected = (selectedGender == item),
+                        onClick = { selectedGender = item }
+                    )
+                    Text(text = item)
+                }
+            }
+        }
 
