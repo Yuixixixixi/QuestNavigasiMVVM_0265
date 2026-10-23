@@ -35,6 +35,12 @@ fun FormIsian(
             thickness = 2.dp,
             color = Color.Red
         )
+        OutlinedTextField(
+            value = textAlamat,
+            onValueChange = { textAlamat = it },
+            label = { Text("Alamat") },
+            singleLine = true,
+            modifier = Modifier.padding(top = 20.dp)
 
         Row {
             jenisK.forEach { item ->
