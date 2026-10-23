@@ -1,5 +1,14 @@
 package com.example.p6.view
 
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import com.example.p6.R
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TampilData(
@@ -34,4 +43,10 @@ fun TampilData(
             }
             Spacer(modifier = Modifier.height(10.dp))
             Button(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth(fraction = 1f)
+                    .padding(all = 25.dp),
+                onClick = onBackBtnClick
+            ) {
+                Text(stringResource(id = R.string.back))
+            }
